@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="file" multiple>
+
+<button class="uploadBtn">upload</button>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+
+
+    async function uploadServer(formObj){
+
+      const res = await axios.post({
+          method : 'post',
+          url : '/upload',
+          data : formObj,
+          header : {
+              "Content-Type" : "multipart/form-data",
+          }
+      })
+
+        return res.data
+
+    }
+
+
+
+
+  document.querySelector(".uploadBtn").addEventListener("click" , (e) => {
+
+      const formData = new FromData()
+
+      const fileInput = document.querySelector("#upload")
+
+      const files = fileInput.files
+
+
+      for(let i = 0 ; i < files.length; i++){
+
+          formData.append("files", files[i])
+
+      }//end for
+
+  },false)
+
+
+</script>
+
+</body>
+</html>

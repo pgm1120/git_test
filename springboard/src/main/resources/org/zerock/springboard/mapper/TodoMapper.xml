@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.springboard.mapper.TodoMapper">
+
+    <select id="selectAll" resultType="org.zerock.springboard.dto.TodoDTO">
+
+        SELECT * FROM todo_board WHERE tno>0 ORDER BY dueDate
+
+    </select>
+    <select id="listPage" resultType="org.zerock.springboard.dto.TodoDTO">
+
+        SELECT * FROM todo_board ORDER BY tno LIMIT #{skip}, #{size}
+
+    </select>
+    <select id="getTotal" resultType="int">
+
+        SELECT COUNT(tno) FROM todo_board
+
+    </select>
+
+
+    <insert id="insertBoard">
+
+        INSERT INTO todo_board (title,writer,memo,dueDate, complete) VALUES (#{title},#{writer}, #{memo}, #{dueDate}, #{complete})
+
+    </insert>
+
+    <delete id="deleteBoard">
+
+        DELETE FROM todo_board WHERE tno = 2
+
+    </delete>
+
+    <update id="updateBoard">
+
+        UPDATE todo_board SET title = #{title}, memo = #{memo}, dueDate = #{dueDate}, complete = #{complete}, moddate = now() WHERE tno = #{tno}
+
+    </update>
+    <select id="selectOne" resultType="org.zerock.springboard.dto.TodoDTO">
+        SELECT * FROM todo_board WHERE tno = #{tno}
+    </select>
+
+
+
+
+</mapper>

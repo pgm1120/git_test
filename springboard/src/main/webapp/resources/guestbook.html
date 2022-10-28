@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+<script>
+  const guestService = (function (){
+
+    const postAdd = async (book) => {
+      const data = await axios.post("http://localhost:8080/ex2", book)
+      return data
+    }
+
+    return {postAdd}
+  })();
+
+
+  const obj = {title : 'aaa' , memo : 'bbb' , writer : 'user0'}
+
+
+  guestService.postAdd(JSON)
+
+
+</script>
+
+</body>
+</html>
